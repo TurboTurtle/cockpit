@@ -249,7 +249,7 @@ const copy = require("copy-webpack-plugin");
 const html = require('html-webpack-plugin');
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CockpitPoPlugin = require("./pkg/lib/cockpit-po-plugin");
 const IncludedModulesPlugin = require("./pkg/lib/included-modules-plugin");
@@ -436,8 +436,8 @@ module.exports = {
         minimizer: [
             new TerserJSPlugin({ extractComments : false }),
             // Workaround: https://github.com/patternfly/patternfly-react/issues/5650
-            new CssMinimizerPlugin({
-                minimizerOptions: {
+            new OptimizeCSSAssetsPlugin({
+                cssProcessorPluginOptions: {
                     preset: ['default', { mergeLonghand: false }]
                 }
             })
